@@ -6,6 +6,7 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.waits.WaitUntil;
+import org.jetbrains.annotations.NotNull;
 
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static org.tuya.ui.PaginaCarrito.INPUT_DATOS;
@@ -16,15 +17,17 @@ public class TaskIngresarDatos implements Task {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-        ingresarcampo(actor);
+        ingresarcampo(actor, "First Name" );
+        ingresarcampo(actor, "Last Name" );
+        ingresarcampo(actor, "Zip/Postal Code" );
     }
 
-    private <T extends Actor> void ingresarcampo(T actor) {
+    private <T extends Actor> void ingresarcampo(@NotNull T actor, String campo) {
 
         String name = faker.name().fullName();
 
-        actor.attemptsTo(WaitUntil.the(INPUT_DATOS.of(textEsperado), isVisible()).forNoMoreThan(10).seconds(),
-                Enter.theValue(name).into(INPUT_LOGIN.of(textEsperado)));
+        actor.attemptsTo(WaitUntil.the(INPUT_DATOS.of(campo), isVisible()).forNoMoreThan(10).seconds(),
+                Enter.theValue(name).into(INPUT_LOGIN.of(campo)));
 
     }
 

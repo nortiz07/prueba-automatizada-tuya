@@ -13,8 +13,7 @@ import java.util.Map;
 
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static org.tuya.ui.PaginaArticulo.*;
-import static org.tuya.ui.PaginaCarrito.CHECKOUT;
-import static org.tuya.ui.PaginaCarrito.ELIMINAR_PRODUCTO;
+import static org.tuya.ui.PaginaCarrito.*;
 import static org.tuya.ui.PaginaInicio.BTN_LOGIN;
 
 public class TaskClick implements Task {
@@ -36,7 +35,9 @@ public class TaskClick implements Task {
         clickEsperadoMap.put("cart",BTN_CARRITO);
         clickEsperadoMap.put("eliminar",ELIMINAR_PRODUCTO);
         clickEsperadoMap.put("agregaritems",ELIMINAR_PRODUCTO);
-        clickEsperadoMap.put("iniciarcheckout",CHECKOUT);
+        clickEsperadoMap.put("iniciarcheckout",CHECKOUT.of("CHECKOUT"));
+        clickEsperadoMap.put("finalizar",CHECKOUT.of("FINISH"));
+        clickEsperadoMap.put("continuar",CONTINUAR);
 
         return clickEsperadoMap;
     }

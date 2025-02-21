@@ -66,7 +66,13 @@ public class StepGestionArticulo {
 
     @When("ingresa sus datos")
     public void enterYourDetails() {
-        actor.attemptsTo(TaskIngresarDatos.delusuario());
+        actor.attemptsTo(TaskIngresarDatos.delusuario(),
+                TaskClick.sobreObjeto("continuar"));
+    }
+
+    @When("finaliza la compra")
+    public void completeThePurchase() {
+        actor.attemptsTo(TaskClick.sobreObjeto("finalizar"));
     }
 
     @Then("el usuario no debería ver nada en el carrito")
@@ -86,6 +92,11 @@ public class StepGestionArticulo {
         String precio = Serenity.sessionVariableCalled("precio");
         actor.should(seeThat(ValidacionTextos.sobreText("inventory_item_price"),
                 equalTo(precio)));
+    }
+
+    @Then("debería ver un mensaje de compra finalizada")
+    public void youShouldSeePurchaseCompletedMessage() {
+        actor.should(seeThat(ValidacionTextos.sobreText(""),equalTo("THANK YOU FOR YOUR ORDER")));
     }
 
 }

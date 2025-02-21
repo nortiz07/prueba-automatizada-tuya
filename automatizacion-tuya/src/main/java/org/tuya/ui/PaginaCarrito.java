@@ -12,9 +12,15 @@ public class PaginaCarrito extends PageObject{
             .locatedBy("//button[text()='REMOVE']");
 
     public static final Target CHECKOUT = Target.the("Botón eliminar producto")
-            .locatedBy("//a[text()='CHECKOUT']");
+            .locatedBy("//a[text()='{0}']");
 
     public static final Target INPUT_DATOS = Target.the("Imput para ingresar usser y password")
             .locatedBy("//input[@placeholder='{0}']");
+
+    public static final Target CONTINUAR = Target.the("Continuar")
+            .locatedBy("//input[@value='CONTINUE']");
+
+    public static final Target TITULO_FINALIZACION = Target.the("Finalizacion compra")
+            .locatedBy("//h2");
 
 }

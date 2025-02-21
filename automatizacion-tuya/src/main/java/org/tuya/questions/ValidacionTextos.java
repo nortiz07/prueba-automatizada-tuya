@@ -7,6 +7,7 @@ import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static org.tuya.ui.PaginaCarrito.DESCRIP_PRECIO_CARRITO;
+import static org.tuya.ui.PaginaCarrito.TITULO_FINALIZACION;
 
 public class ValidacionTextos implements Question<String> {
 
@@ -16,11 +17,16 @@ public class ValidacionTextos implements Question<String> {
         this.textEsperado = textEsperado;
     }
 
+
     @Override
     public String answeredBy(Actor actor) {
-        actor.attemptsTo(WaitUntil.the(DESCRIP_PRECIO_CARRITO.of(textEsperado), isVisible()).forNoMoreThan(10).seconds());
+        if (textEsperado.equals("inventory_item_desc") || textEsperado.equals("inventory_item_price") ) {
+            actor.attemptsTo(WaitUntil.the(DESCRIP_PRECIO_CARRITO.of(textEsperado), isVisible()).forNoMoreThan(10).seconds());
 
-        return Text.of(DESCRIP_PRECIO_CARRITO.of(textEsperado)).answeredBy(actor);
+            return Text.of(DESCRIP_PRECIO_CARRITO.of(textEsperado)).answeredBy(actor);
+        }
+        actor.attemptsTo(WaitUntil.the(TITULO_FINALIZACION, isVisible()).forNoMoreThan(10).seconds());
+        return Text.of(TITULO_FINALIZACION).answeredBy(actor);
     }
 
     public static ValidacionTextos sobreText(String textEsperado) {
