@@ -12,7 +12,7 @@ import static org.tuya.ui.PaginaInicio.INPUT_LOGIN;
 public class TaskLogin implements Task {
 
     private final String usser = System.getenv("USERNAME");
-    private final String password = System.getenv("PASSWORD");
+    private final String password = System.getenv("PASS");
 
     @Override
     public <T extends Actor> void performAs(T actor) {

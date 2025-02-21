@@ -91,8 +91,10 @@ test.finalizedBy(aggregate)
 
 task runTests(type: Test){
     //variables de entorno para las pruebas
-    environment "PASSWORD", System.getenv("PASSWORD") ?: "default-1234"
+    environment "PASS", System.getenv("PASS") ?: "default-1234"
     environment "USERNAME", System.getenv("USERNAME") ?: "default-email@example.com"
+    environment "URL_API", System.getenv("URL_API")
+    environment "BASE_URL", System.getenv("BASE_URL")
 
     useJUnitPlatform()
 }
